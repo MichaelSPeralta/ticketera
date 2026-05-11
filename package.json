@@ -8,12 +8,13 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspaces --if-present",
+    "dev": "concurrently \"npm run dev -w @ticketera/api\" \"npm run dev -w admin\"",
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "rimraf": "^5.0.0"
+    "concurrently": "^9.2.1",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.0"
   }
 }
