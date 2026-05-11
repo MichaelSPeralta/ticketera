@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test SDK Ticketera</title>
+    <script type="module" src="./packages/sdk/dist/index.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 40px; line-height: 1.6; max-width: 800px; margin: 0 auto; background: #f9fafb; }
+        .card { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        h1 { color: #111827; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Demo de Agente AI con Ticketera</h1>
+        <p>Este es un sitio de ejemplo que integra el widget de soporte modular.</p>
+        <p>Simulando una conversación con el agente...</p>
+        <div id="chat-simulator" style="background: #f3f4f6; padding: 16px; border-radius: 6px; margin-top: 20px;">
+            <p><strong>Agente:</strong> Hola, ¿en qué puedo ayudarte?</p>
+            <p><strong>Tú:</strong> Mi pago fue rechazado pero ya me lo cobraron.</p>
+            <p><strong>Agente:</strong> Lo siento, no tengo acceso a esa información de pagos. ¿Te gustaría abrir un ticket de soporte?</p>
+        </div>
+    </div>
+
+    <!-- El widget de soporte -->
+    <ticket-widget api-key="test_api_key_123"></ticket-widget>
+
+    <script type="module">
+        import { TicketSDK } from './packages/sdk/dist/index.js';
+        
+        // Simulamos historial de conversación
+        const history = [
+            { role: 'agent', content: 'Hola, ¿en qué puedo ayudarte?', timestamp: new Date().toISOString() },
+            { role: 'user', content: 'Mi pago fue rechazado pero ya me lo cobraron.', timestamp: new Date().toISOString() },
+            { role: 'agent', content: 'Lo siento, no tengo acceso a esa información de pagos. ¿Te gustaría abrir un ticket de soporte?', timestamp: new Date().toISOString() }
+        ];
+
+        // Inicializamos y pasamos el historial
+        TicketSDK.setHistory(history);
+    </script>
+</body>
+</html>
